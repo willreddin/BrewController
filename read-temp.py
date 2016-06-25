@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
+
 import os
 import time
 import json
@@ -5,7 +8,7 @@ import json
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
 
-temp_sensor = 'sys/bus/w1/devices/28-00043359d9ff/w1_slave'
+temp_sensor = '/sys/bus/w1/devices/28-00043359d9ff/w1_slave'
 
 def temp_raw():
 	f = open(temp_sensor, 'r')
