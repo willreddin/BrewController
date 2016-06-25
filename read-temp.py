@@ -1,12 +1,17 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*- 
-
+ 
 import os
 import time
 import json
+import keen
 
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
+
+keen.project_id = os.environ.get('PROJECT_ID')
+keen.write_key = os.environ.get('WRITE_KEY')
+keen.read_key = os.environ.get('READ_KEY')
+keen.master_key = os.environ.get('MASTER_KEY')
 
 temp_sensor = '/sys/bus/w1/devices/28-00043359d9ff/w1_slave'
 
@@ -30,7 +35,7 @@ def read_temp():
 		temp_f = temp_c * 9.0 / 5.0 +32.0
 		
 		json_temp = {
-			'celcius' : temp_c
+			'celcius' : temp_c,
 			'fahrenheit' : temp_f
 			}
 		return json_temp
@@ -38,6 +43,7 @@ def read_temp():
 # while reading the temp from the sensor write the result to a file in json format, wait a second then write again
 while True:
 	print(read_temp())
+	keen.add_event("temp_reading", read_temp())
 	time.sleep(1)
 
 
