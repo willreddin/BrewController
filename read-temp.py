@@ -31,6 +31,7 @@ def read_temp():
 		
 		json_temp = {
 			'celcius' : temp_c
+			'fahrenheit' : temp_f
 			}
 		return json_temp
 
