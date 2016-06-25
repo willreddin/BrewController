@@ -27,9 +27,9 @@ def read_temp():
 		temp_f = temp_c * 9.0 / 5.0 +32.0
 		
 		json_temp = {
-			'celcius': temp_c
+			'celcius': temp_c,
 			'fahrenheit': temp_f
-		}
+			}
 		return json_temp
 
 # while reading the temp from the sensor write the result to a file in json format, wait a second then write again
