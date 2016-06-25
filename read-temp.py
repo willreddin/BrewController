@@ -2,7 +2,6 @@
  
 import os
 import time
-import json
 import keen
 
 os.system('modprobe w1-gpio')
