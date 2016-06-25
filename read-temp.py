@@ -1,5 +1,6 @@
 import os
 import time
+import json
 
 os.system('modprobe w1-gpio')
 os.system('modprobe w1-therm')
@@ -24,11 +25,16 @@ def read_temp():
 		temp_string = lines[1].strip()[temp_output+2:]
 		temp_c = float(temp_string) / 1000.0
 		temp_f = temp_c * 9.0 / 5.0 +32.0
-		return temp_c, temp_f
+		
+		json_temp = {
+			'celcius': temp_c
+			'fahrenheit': temp_f
+		}
+		return json_temp
 
 # while reading the temp from the sensor write the result to a file in json format, wait a second then write again
 while True:
-	print(temp_c, temp_f)
+	print(read_temp())
 	time.sleep(1)
 
 
