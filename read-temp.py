@@ -24,10 +24,11 @@ def read_temp():
 		temp_string = lines[1].strip()[temp_output+2:]
 		temp_c = float(temp_string) / 1000.0
 		temp_f = temp_c * 9.0 / 5.0 +32.0
-		return "celcius: " + temp_c,"fahrenheit" temp_f
+		return temp_c, temp_f
 
+# while reading the temp from the sensor write the result to a file in json format, wait a second then write again
 while True:
-	print(read_temp())
+	print(temp_c, temp_f)
 	time.sleep(1)
 
 
